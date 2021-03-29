@@ -1,0 +1,11 @@
+<% provide(:title, "Home") %>
+
+<% content_for :head do %>
+    <meta name="turbolinks-cache-control" content="no-cache">
+<% end %>
+
+<% if current_user%>
+<%= render 'staticpages/home_logged'%>
+<% else %>
+<%= render 'staticpages/home_not_logged' %>
+<% end %>

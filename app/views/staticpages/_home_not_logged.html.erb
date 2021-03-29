@@ -1,0 +1,40 @@
+<div class="container">
+       <br/>
+       <br/>
+       <div class="row">
+          <div class="col-sm-8">
+             <div class= container-fluid>
+                <h1> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Fatto da un appassionato<h1>
+                <h1> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; per appassionati </h1>
+                <br/>
+                <h5>Entra anche tua far parte della community di Think-Sell,il numero uno 
+                nella vendita di think-pad. <br/>
+                Ogni giorni migliaia di persone appassionate si unicoscono a noi per comprare e vendere.<br/>
+                Cosa aspetti, <a class="nav-lnk" href="/users/sign_up">registrati</a> o <a class="clickable login-lnk"  href="/users/sign_in">loggati</a> subito!</h5>
+             </div>
+          </div>
+          <div class="col-sm-4">
+              <% if current_user %>
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+              <% else %>
+              <div class="sign-form home-box not-logged-padding margin-left">
+                <div class="register-form">
+                  <h1>Registrati</h1>
+                    <div id="existing-user-lnk" class="logged">
+                      Nuovo utente? <span class="clickable register-lnk">Registrati</span> ora!
+                    </div>
+                    <%= link_to 'Sign Up', new_user_registration_path %>
+                </div>
+                <div class="login-form">
+                  <h1>Login</h1>
+                    <div id="new-user-lnk" class="logged">
+                      
+                      Già registrato? <span class="clickable login-lnk">Entra</span> ora!
+                    </div>
+                    <%= link_to 'Sign In', new_user_session_path %>
+                </div>
+              </div>
+              <% end %>
+          </div>
+        </div>
+    </div>
