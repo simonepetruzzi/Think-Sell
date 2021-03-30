@@ -15,14 +15,25 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <ul class="navbar-nav ml-auto">
     <% if current_user %>
-  <li class="nav-item">
-      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-  </li>
-  <% else %>
-  <li class="nav-item" >
-      <%= link_to 'Sign In', new_user_session_path %>
-  </li>
-  <% end %>
+      <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.username %>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Nuova Inserzione</a>
+            
+            <a class="dropdown-item" href="<%= edit_user_registration_path %>">Account Settings</a>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Logout", destroy_user_session_path, class:'dropdown-item', method: :delete %>
+            </div>
+        </li>
+    <% else %>
+        <li class="nav-item" >
+        <%= link_to 'Sign In', new_user_session_path %>
+        </li>
+    <% end %>
+    </ul>
   </div>
 </nav>
