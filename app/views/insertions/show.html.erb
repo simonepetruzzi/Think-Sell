@@ -1,0 +1,64 @@
+<div class="container">
+  <h1> <%= @insertion.title %> </h1>
+  <div class="row">
+    
+    <div class="col-8"> 
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <% if @insertion.thumbnail[0].present? %>
+          <div class="carousel-item active">
+             <%= image_tag @insertion.thumbnail[0],style:'width:100%; height: 700px; overflow-y:hidden' %>
+          </div>
+          <% end %>
+          <% if @insertion.thumbnail[1].present? %>
+          <div class="carousel-item">
+            <%= image_tag @insertion.thumbnail[1],style:'width:100%' %>
+          </div>
+          <% end %>
+          <div class="carousel-item">
+            <img src="..." class="d-block w-100" alt="...">
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="col-4">
+        <div class="jumbotron">
+        <p class="lead">
+        <%= @insertion.updated_at.strftime("%A, %B %e, %Y") %> by <%= @insertion.user.username %>
+        </p>
+        </br>
+        </br>
+        <h4> Prezzo: <%= @insertion.price %> € </h4>
+        </br>
+        <h3>Contatti:</h3>
+        <h5>email:<%=  @insertion.user.email%></h5>
+        <% if current_user && current_user == @insertion.user || current_user && current_user.admin == true %>
+          <div>
+            <%= link_to insertion_path(@insertion), {id: 'delete-insertion-btn', method:  :delete, data: { confirm: 'Vuoi davvero eliminarlo?', disable_with: false}} do%>
+              <button type="button" class="delete-insertion-btn'"> Elimina inserzione </button>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to edit_insertion_path(@insertion), id:'edit-insertion-btn' do%>
+              <button type="button" class="edit-insertion-btn'"> Modifica Inserzione </button>
+            <% end %>
+          </div>
+        <% end%>
+        
+      </div>
+    
+    </div>
+
+  </div>
+  </br>
+  </br>
+  </br>
+  <div class= "row">
+    <div class="jumbotron">
+      
+      <h4><%= @insertion.body %></h4>
+      
+    </div>
+  </div>
+
+</div>

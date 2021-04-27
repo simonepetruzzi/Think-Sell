@@ -1,0 +1,18 @@
+
+<%= form_with model: (@insertion) do |f| %>
+  
+
+  <div class="form-inputs">
+    <h6>Titolo </h6>
+    <%= f.text_field :title,:id => 'title2', class:'form-control string' %>
+    <%= f.label :thumbnail, class:'form-control' %>
+    <%= f.file_field :thumbnail %>
+    <h6>Prezzo</h6>
+    <%= f.number_field :price,:id => 'price2', class:'form-control string'%>
+    <%= f.rich_text_area :body,:id => 'body2' %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

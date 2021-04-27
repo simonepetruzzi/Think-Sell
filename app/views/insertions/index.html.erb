@@ -1,0 +1,30 @@
+
+<div class="container">
+  <h1> pagina inserzioni</h1>
+  <% @insertions.each do |insertion| %>
+  <div class="row">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <%= image_tag insertion.thumbnail[0],style:'width:100%; height: 200px; overflow-y:hidden' %>
+        </div>
+        <div class="col-9">
+          <h1 class="display-4"> <%= link_to insertion.title, insertion %> </h1>
+          <p class="lead"><%= insertion.updated_at.strftime("%A, %B %e, %Y") %> by <%= insertion.user.username %> </p>
+          <h1><%= insertion.price%> €</h1>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <div class="row">
+  <div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @insertions %>
+    </div>
+    <%= will_paginate @insertions, :container => false %>
+</div>
+  </div>
+</div>

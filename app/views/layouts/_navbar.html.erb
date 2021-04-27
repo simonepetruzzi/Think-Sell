@@ -1,20 +1,22 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="/">Think-Sell</a>
+    <%= link_to 'Think-Sell', root_path, class:"navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <form class="d-flex" action="<%= search_path %>" method="get">
+        <%= search_field_tag :search, params[:search], placeholder: "Cerca per titolo", class: "form-control" %>  
+        <button class="btn btn-outline-success" type="submit">Cerca</button>
       </form>
     </div>
+    
     <a class="navbar-brand" href="/about">About</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <%= link_to 'Mostra Inserzioni', insertions_path, class:"navbar-brand" %>
     <ul class="navbar-nav ml-auto">
     <% if current_user %>
       <li class="nav-item dropdown">
@@ -22,16 +24,18 @@
             <%= current_user.username %>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Nuova Inserzione</a>
             
-            <a class="dropdown-item" href="<%= edit_user_registration_path %>">Account Settings</a>
+            <%= link_to "Nuova Inserzione", new_insertion_path,class:'dropdown-item'%>
+            <%= link_to 'Mio profilo', user_path(current_user), class:'dropdown-item' %>
+            <%= link_to 'impostazioni account', edit_user_registration_path,class:'dropdown-item' %>
             <div class="dropdown-divider"></div>
-            <%= link_to "Logout", destroy_user_session_path, class:'dropdown-item', method: :delete %>
+            
+            <%= link_to 'Log Out', destroy_user_session_path,class:'dropdown-item', method: :delete %>
             </div>
         </li>
     <% else %>
         <li class="nav-item" >
-        <%= link_to 'Sign In', new_user_session_path %>
+        <%= link_to 'Log In', new_user_session_path %>
         </li>
     <% end %>
     </ul>
